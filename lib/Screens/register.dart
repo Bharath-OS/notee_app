@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/Screens/login.dart';
-
 import '../Constants/constants.dart';
 import '../Database/database.dart';
 import '../Themes/themes.dart';
@@ -12,46 +10,44 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Expanded(
-          child: Container(
-            color: MyColors.primaryColor,
-            child: Column(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsetsGeometry.all(30),
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text("Hello!", style: MyTheme.titleLargeStyle),
-                    ),
+        child: Container(
+          color: MyColors.primaryColor,
+          child: Column(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(30),
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text("Hello!", style: MyTheme.titleLargeStyle),
                   ),
                 ),
-                Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: MyColors.secondaryColor,
-                        borderRadius: BorderRadiusDirectional.only(
-                          topStart: Radius.circular(30),
-                          topEnd: Radius.circular(30),
-                        ),
-                      ),
-                      child: FormWidgets(),
-                    ),
-                    Positioned(
-                      top: -150,
-                      right: 0,
-                      // bottom: 0,
-                      child: Image.asset(
-                        width: 110,
-                        "assets/Images/Plant_Illustration.png",
+              ),
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: MyColors.secondaryColor,
+                      borderRadius: BorderRadiusDirectional.only(
+                        topStart: Radius.circular(30),
+                        topEnd: Radius.circular(30),
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
+                    child: FormWidgets(),
+                  ),
+                  Positioned(
+                    top: -150,
+                    right: 0,
+                    // bottom: 0,
+                    child: Image.asset(
+                      width: 110,
+                      "assets/Images/Plant_Illustration.png",
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
@@ -77,7 +73,7 @@ class _FormWidgetsState extends State<FormWidgets> {
     return Center(
       child: Padding(
         padding: EdgeInsetsGeometry.all(40),
-        child: Container(
+        child: SizedBox(
           // color: Colors.grey,
           width: double.infinity,
           child: Column(
@@ -163,7 +159,7 @@ class _FormWidgetsState extends State<FormWidgets> {
                       email: _emailController.text,
                       password: _passwordController.text,
                     );
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>LoginScreen()));
+                    Navigator.pushReplacementNamed(context, '/login');
                   }
                 },
                 child: Text("Register"),
@@ -183,10 +179,7 @@ class _FormWidgetsState extends State<FormWidgets> {
               ElevatedButton(
                 style: MyTheme.primaryButtonStyle,
                 onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (_) => LoginScreen()),
-                  );
+                  Navigator.pushReplacementNamed(context, '/login');
                 },
                 child: Text("Login"),
               ),

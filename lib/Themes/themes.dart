@@ -48,6 +48,10 @@ class MyTheme {
       borderRadius: BorderRadius.circular(30),
       borderSide: BorderSide(width: 3, color: MyColors.primaryColor),
     ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(30),
+      borderSide: BorderSide(width: 1, color: Colors.red),
+    ),
   );
 
   static final primaryButtonStyle = ElevatedButton.styleFrom(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../Constants/constants.dart';
+import '../Logics/notesProvider.dart';
 import '../Themes/themes.dart';
 
 class AddNotesPage extends StatefulWidget {
@@ -86,6 +88,7 @@ class _AddNotesPageState extends State<AddNotesPage> {
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                          context.read<NotesProvider>().addNote(title: _titleController.text, description: _contentController.text);
                           _titleController.clear();
                           _contentController.clear();
                           Navigator.pop(context);
