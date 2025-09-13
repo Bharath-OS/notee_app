@@ -1,7 +1,6 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:notes_app/Database/database.dart';
 import 'package:notes_app/Logics/notesProvider.dart';
 import 'package:notes_app/Models/note.dart';
 import 'package:notes_app/Screens/home.dart';

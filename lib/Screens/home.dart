@@ -4,12 +4,11 @@ import 'package:notes_app/Screens/addnotes.dart';
 import 'package:provider/provider.dart';
 import '../Constants/constants.dart';
 import '../Database/database.dart';
-import '../Models/note.dart';
 import '../Themes/themes.dart';
 import 'edit_notes.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

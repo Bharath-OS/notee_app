@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/Database/secure_storage.dart';
 import '../Constants/constants.dart';
-import '../Database/database.dart';
 import '../Themes/themes.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -67,6 +67,7 @@ class _FormWidgetsState extends State<FormWidgets> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -96,8 +97,8 @@ class _FormWidgetsState extends State<FormWidgets> {
                         ),
                         hintText: "Username",
                       ),
-                      validator: (value){
-                        if(value==null || value.isEmpty){
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
                           return "This field is empty";
                         }
                         return null;
@@ -116,8 +117,8 @@ class _FormWidgetsState extends State<FormWidgets> {
                         ),
                         hintText: "Email",
                       ),
-                      validator: (value){
-                        if(value==null || value.isEmpty){
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
                           return "This field is empty";
                         }
                         return null;
@@ -136,11 +137,10 @@ class _FormWidgetsState extends State<FormWidgets> {
                         ),
                         hintText: "Password",
                       ),
-                      validator: (value){
-                        if(value==null || value.isEmpty){
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
                           return "This field is empty";
-                        }
-                        else if(value.length < 6){
+                        } else if (value.length < 6) {
                           return "Password should have at least 6 characters";
                         }
                         return null;
@@ -152,10 +152,10 @@ class _FormWidgetsState extends State<FormWidgets> {
               SizedBox(height: Measurements.normalSpacing),
               ElevatedButton(
                 style: MyTheme.primaryButtonStyle,
-                onPressed: () {
+                onPressed: () async{
                   if (_formKey.currentState!.validate()) {
-                    Database.saveData(
-                      username: _userNameController.text,
+                    await authService.saveUser(
+                      name: _userNameController.text,
                       email: _emailController.text,
                       password: _passwordController.text,
                     );

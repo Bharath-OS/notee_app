@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/Database/database.dart';
+import 'package:notes_app/Database/secure_storage.dart';
 import '../Constants/constants.dart';
 import '../Themes/themes.dart';
 
@@ -66,6 +66,7 @@ class _FormWidgetsState extends State<FormWidgets> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -127,10 +128,15 @@ class _FormWidgetsState extends State<FormWidgets> {
               SizedBox(height: Measurements.normalSpacing),
               ElevatedButton(
                 style: MyTheme.primaryButtonStyle,
-                onPressed: () {
+                onPressed: () async {
+                  final user = await authService.getUser();
                   if (_formKey.currentState!.validate()) {
-                    if (Database.isLogged(_emailController.text, _passwordController.text)) {
-                      Database.showData();
+                    if (user[AuthService.emailKey] == _emailController.text &&
+                        user[AuthService.passwordKey] ==
+                            _passwordController.text) {
+                      // print(
+                      //   "Username : ${user[AuthService.usernameKey]}\nEmail: ${user[AuthService.emailKey]}\nPassword : ${user[AuthService.passwordKey]}",
+                      // );
                       Navigator.pushReplacementNamed(context, '/home');
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(

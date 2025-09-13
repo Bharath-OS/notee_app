@@ -6,7 +6,7 @@ import '../Logics/notesProvider.dart';
 import '../Themes/themes.dart';
 //
 void EditNotePopup(BuildContext context,int index) {
-  showDialog(context: context, builder: (_) => EditNotePage(index: index,));
+  showDialog(context: context, builder: (context) => EditNotePage(index: index,));
 }
 
 class EditNotePage extends StatefulWidget {

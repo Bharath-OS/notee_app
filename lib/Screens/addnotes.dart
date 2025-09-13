@@ -102,7 +102,7 @@ class _AddNotesPageState extends State<AddNotesPage> {
               ],
             ),
           ),
-        );;
+        );
       },
       child: Icon(Icons.add, size: 30),
     );
